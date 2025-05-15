@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-scroll';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
+      if (window.scrollY > 50) {
+        setScrolled(true);
       } else {
-        setIsScrolled(false);
+        setScrolled(false);
       }
     };
 
@@ -18,64 +19,94 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const navLinks = [
+    { name: 'Home', to: 'hero' },
+    { name: 'Services', to: 'services' },
+    { name: 'Benefits', to: 'benefits' },
+    { name: 'Testimonials', to: 'testimonials' },
+    { name: 'Contact', to: 'cta' },
+  ];
+
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md py-2' : 'bg-transparent py-4'}`}>
-      <div className="container">
-        <nav className="flex justify-between items-center">
-          <a href="/" className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+      <div className="container flex justify-between items-center">
+        <div className="flex items-center">
+          <a href="/" className="text-2xl font-bold text-primary">
             BizDevXperts
           </a>
+        </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <div className="space-x-6">
-              <a href="/" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Home</a>
-              <a href="/services" className="text-indigo-600 font-medium relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-indigo-600">Services</a>
-              <a href="/about" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">About</a>
-              <a href="/contact" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Contact</a>
-            </div>
-            
-            <a 
-              href="https://app.apollo.io/#/meet/bizdevxperts/30-min" 
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex space-x-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.to}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              className="font-medium cursor-pointer hover:text-primary transition-colors"
             >
-              Book a Call
-            </a>
-          </div>
+              {link.name}
+            </Link>
+          ))}
+        </div>
 
-          {/* Mobile Navigation Toggle */}
-          <button 
-            className="md:hidden text-gray-700 focus:outline-none"
-            onClick={() => setIsOpen(!isOpen)}
+        <div className="hidden md:block">
+          <a
+            href="https://app.apollo.io/#/meet/bizdevxperts/30-min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
           >
+            Book Free Consultation
+          </a>
+        </div>
+
+        {/* Mobile Navigation Toggle */}
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-dark focus:outline-none">
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
-        </nav>
-
-        {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <div className="md:hidden bg-white/95 backdrop-blur-sm mt-4 py-4 rounded-xl shadow-lg">
-            <div className="flex flex-col space-y-4 px-4">
-              <a href="/" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors duration-300">Home</a>
-              <a href="/services" className="text-indigo-600 font-medium py-2 border-b border-indigo-100 pb-2">Services</a>
-              <a href="/about" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors duration-300">About</a>
-              <a href="/contact" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors duration-300">Contact</a>
-              
-              <a 
-                href="https://app.apollo.io/#/meet/bizdevxperts/30-min" 
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-center"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Book a Call
-              </a>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
-    </header>
+
+      {/* Mobile Navigation Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0 py-4">
+          <div className="container flex flex-col space-y-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.to}
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+                className="font-medium py-2 cursor-pointer hover:text-primary transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <a
+              href="https://app.apollo.io/#/meet/bizdevxperts/30-min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary w-full text-center"
+              onClick={() => setIsOpen(false)}
+            >
+              Book Free Consultation
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 

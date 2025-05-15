@@ -1,23 +1,27 @@
 import React from 'react';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Features from './components/Features';
+import Services from './components/Services';
 import VideoSection from './components/VideoSection';
+import Process from './components/Process';
+import Benefits from './components/Benefits';
 import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
-import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="App">
       <Navbar />
-      <main className="flex-grow">
-        <Hero />
-        <Features />
-        <VideoSection />
-        <Testimonials />
-        <CallToAction />
-      </main>
+      <Hero />
+      <Services />
+      <VideoSection />
+      <Process />
+      <Benefits />
+      <Testimonials />
+      <FAQ />
+      <CallToAction />
       <Footer />
     </div>
   );
