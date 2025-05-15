@@ -2,15 +2,6 @@ import React from 'react';
 import YouTube from 'react-youtube';
 
 const VideoSection = () => {
-  // Extract video ID from the YouTube URL
-  const getYouTubeID = (url) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  };
-
-  const videoId = getYouTubeID('https://youtu.be/arwVmsA3wR4');
-  
   const opts = {
     height: '390',
     width: '100%',
@@ -20,49 +11,29 @@ const VideoSection = () => {
   };
 
   return (
-    <section id="video" className="section bg-white">
+    <section className="section bg-gradient-to-br from-indigo-900 to-purple-900 text-white">
       <div className="container">
-        <div className="text-center mb-16">
-          <h2 className="heading">See How We Can Help Your Business</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Watch this short video to learn how our virtual assistant services can transform your business operations and help you focus on growth.
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">See How We Transform Businesses</h2>
+          <p className="text-xl text-indigo-100 mb-10">
+            Watch how our virtual assistant services help entrepreneurs and business owners reclaim their time and accelerate growth.
           </p>
         </div>
         
-        <div className="max-w-4xl mx-auto">
-          <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-xl">
-            {videoId && (
-              <div className="relative pb-[56.25%] h-0 overflow-hidden max-w-full">
-                <YouTube 
-                  videoId={videoId} 
-                  opts={opts} 
-                  className="absolute top-0 left-0 w-full h-full rounded-xl"
-                />
-              </div>
-            )}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <p className="text-xl font-medium mb-6">Ready to experience these benefits for your business?</p>
-            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <a 
-                href="https://app.apollo.io/#/meet/bizdevxperts/30-min" 
-                className="btn-primary"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Book Your Free Consultation
-              </a>
-              <a 
-                href="https://bizdevxperts.com/services" 
-                className="btn-outline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Explore All Services
-              </a>
-            </div>
-          </div>
+        <div className="rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto transform hover:scale-[1.01] transition-transform duration-300">
+          <YouTube videoId="arwVmsA3wR4" opts={opts} className="w-full" />
+        </div>
+        
+        <div className="mt-12 text-center">
+          <p className="text-xl font-medium mb-6 text-indigo-100">Ready to experience these results for your business?</p>
+          <a 
+            href="https://app.apollo.io/#/meet/bizdevxperts/30-min" 
+            className="bg-white hover:bg-gray-100 text-indigo-700 font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 inline-block"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book Your Free Strategy Call
+          </a>
         </div>
       </div>
     </section>

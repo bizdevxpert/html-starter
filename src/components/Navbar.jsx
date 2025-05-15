@@ -19,25 +19,25 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="container">
         <nav className="flex justify-between items-center">
-          <a href="/" className="text-2xl font-bold text-indigo-600">
+          <a href="/" className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
             BizDevXperts
           </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <div className="space-x-6">
-              <a href="/" className="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
-              <a href="/services" className="text-indigo-600 font-medium">Services</a>
-              <a href="/about" className="text-gray-700 hover:text-indigo-600 font-medium">About</a>
-              <a href="/contact" className="text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+              <a href="/" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Home</a>
+              <a href="/services" className="text-indigo-600 font-medium relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-indigo-600">Services</a>
+              <a href="/about" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">About</a>
+              <a href="/contact" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Contact</a>
             </div>
             
             <a 
               href="https://app.apollo.io/#/meet/bizdevxperts/30-min" 
-              className="btn-primary"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -56,16 +56,16 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu */}
         {isOpen && (
-          <div className="md:hidden bg-white mt-4 py-4 rounded-lg shadow-lg">
+          <div className="md:hidden bg-white/95 backdrop-blur-sm mt-4 py-4 rounded-xl shadow-lg">
             <div className="flex flex-col space-y-4 px-4">
-              <a href="/" className="text-gray-700 hover:text-indigo-600 font-medium py-2">Home</a>
-              <a href="/services" className="text-indigo-600 font-medium py-2">Services</a>
-              <a href="/about" className="text-gray-700 hover:text-indigo-600 font-medium py-2">About</a>
-              <a href="/contact" className="text-gray-700 hover:text-indigo-600 font-medium py-2">Contact</a>
+              <a href="/" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors duration-300">Home</a>
+              <a href="/services" className="text-indigo-600 font-medium py-2 border-b border-indigo-100 pb-2">Services</a>
+              <a href="/about" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors duration-300">About</a>
+              <a href="/contact" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors duration-300">Contact</a>
               
               <a 
                 href="https://app.apollo.io/#/meet/bizdevxperts/30-min" 
-                className="btn-primary text-center"
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-center"
                 target="_blank"
                 rel="noopener noreferrer"
               >
